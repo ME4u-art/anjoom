@@ -101,7 +101,8 @@ export const notFoundHead = () => ({
 // agency. Copy the folder per client and rewrite this block; nothing else
 // in the codebase should ever carry a client's name, colors or contacts.
 //
-// A filled-in example lives in docs/clients/tazi-travels.agency.ts.
+// A filled-in example lives in MotherTemplate; client forks do not carry
+// other clients' data.
 
 export const agency: AgencyConfig = {
   identity: {
