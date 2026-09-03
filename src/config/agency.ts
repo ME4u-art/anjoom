@@ -139,15 +139,16 @@ export const agency: AgencyConfig = {
   // The flyers show YouTube, Snapchat, Instagram and Facebook icons but no
   // handles — left empty until the agency sends the links.
   socials: {},
-  // Every flyer they sent is an Omra programme, so that is all the site
-  // claims to sell. Switch more on once they confirm what else they do.
+  // Omra is the only section carrying their real programmes. The rest run on
+  // the template's demo catalogue so the client can see a full site — switch
+  // them off again before launch unless Anjoom actually sells them.
   features: {
     omra: true,
-    voyagesOrganises: false,
+    voyagesOrganises: true,
     circuits: false,
-    cruises: false,
-    languageStays: false,
-    greatDeals: false,
+    cruises: true,
+    languageStays: true,
+    greatDeals: true,
     visa: false,
     mice: false,
     gallery: false,
