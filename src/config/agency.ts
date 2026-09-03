@@ -107,10 +107,12 @@ export const agency: AgencyConfig = {
   identity: {
     name: "Anjoom Voyage",
     tagline: "Agence de voyages — Salé",
-    // TODO: no logo file was supplied — only the flyers. Ask the agency for
-    // the original (PNG with transparency if they have it).
-    logo: "/logo-placeholder.svg",
-    logoOnDark: "/logo-placeholder-dark.svg",
+    // Rebuilt from a JPEG of the logo: the transparency was already gone, so
+    // the checkerboard behind it was repainted white rather than knocked out
+    // (the wordmark script is white and would have been erased with it).
+    // That white ground is why the header and footer run light below.
+    // Ask the agency for the original transparent PNG when you can.
+    logo: "/logo-anjoom.png",
   },
   // Four seeds — every other colour on the site is derived from them
   // (see the top of styles.css). Straight off the logo: the deep blue of
@@ -121,6 +123,8 @@ export const agency: AgencyConfig = {
     accent: "#29abe2", // hero accent words, badges
     highlight: "#c9a227", // section eyebrows, decorative details
     navy: "#0e2350", // body text, header pill, footer
+    headerStyle: "light",
+    footerStyle: "light",
   },
   contact: {
     phones: ["05 37 84 02 12", "05 37 82 08 09", "06 61 34 15 95", "06 61 34 15 94"],
@@ -151,9 +155,10 @@ export const agency: AgencyConfig = {
     mice: false,
     gallery: false,
   },
-  // Saudia flies the autumn and winter programmes, Qatar Airways the
-  // Ramadan ones.
-  partners: ["qatar"],
+  // Hidden: Saudia carries four of the five programmes and has no logo in
+  // src/lib/partners.ts, so the strip would advertise only Qatar Airways —
+  // and with a single entry the marquee repeats it, which reads as a bug.
+  partners: [],
   seo: {
     title: "Anjoom Voyage — Omra au départ du Maroc",
     description:
