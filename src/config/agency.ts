@@ -113,13 +113,14 @@ export const agency: AgencyConfig = {
     logoOnDark: "/logo-placeholder-dark.svg",
   },
   // Four seeds — every other colour on the site is derived from them
-  // (see the top of styles.css). Taken from the flyers: deep navy ground
-  // with a gold rule, and the sky blue of the Anjoom logo.
+  // (see the top of styles.css). Straight off the logo: the deep blue of
+  // the wordmark and the sky blue of the cloud. Gold is kept for small
+  // details because it carries across every one of their flyers.
   theme: {
-    brand: "#16306b", // primary: buttons, links, active states
-    accent: "#c9a227", // hero accent words, badges
-    highlight: "#e0b64a", // section eyebrows, decorative details
-    navy: "#0f1c3a", // body text, header pill, footer
+    brand: "#1b3fa0", // primary: buttons, links, active states
+    accent: "#29abe2", // hero accent words, badges
+    highlight: "#c9a227", // section eyebrows, decorative details
+    navy: "#0e2350", // body text, header pill, footer
   },
   contact: {
     phones: ["05 37 84 02 12", "05 37 82 08 09", "06 61 34 15 95", "06 61 34 15 94"],
