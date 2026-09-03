@@ -107,10 +107,9 @@ export const agency: AgencyConfig = {
   identity: {
     name: "Anjoom Voyage",
     tagline: "Agence de voyages — Salé",
-    // Rebuilt from a JPEG of the logo: the transparency was already gone, so
-    // the checkerboard behind it was repainted white rather than knocked out
-    // (the wordmark script is white and would have been erased with it).
-    // That white ground is why the header and footer run light below.
+    // Alpha rebuilt from a flattened JPEG — see scripts/_logo.mjs. The
+    // wordmark script is white, so this needs a dark surface behind it;
+    // that is why the header and footer stay dark.
     // Ask the agency for the original transparent PNG when you can.
     logo: "/logo-anjoom.png",
   },
@@ -123,8 +122,6 @@ export const agency: AgencyConfig = {
     accent: "#29abe2", // hero accent words, badges
     highlight: "#c9a227", // section eyebrows, decorative details
     navy: "#0e2350", // body text, header pill, footer
-    headerStyle: "light",
-    footerStyle: "light",
   },
   contact: {
     phones: ["05 37 84 02 12", "05 37 82 08 09", "06 61 34 15 95", "06 61 34 15 94"],
