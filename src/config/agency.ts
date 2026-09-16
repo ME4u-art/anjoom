@@ -145,6 +145,17 @@ export const agency: AgencyConfig = {
     },
     // Used for the Google Maps embed on /contact — the exact search string.
     mapQuery: "Hafrat El Kaouss, route de Kénitra, Salé",
+    // Coordinates rather than a search string, so the embed can carry !2sma -
+    // the region field Google uses for disputed borders. Without it the map
+    // splits Western Sahara off Morocco with a dashed line, and a ?q= embed
+    // cannot carry the field at all.
+    //
+    // TODO: 34.0531, -6.7985 is SALE CITY CENTRE, not the agency. No geocoder
+    // resolves "Hafrat El Kaouss, route de Kenitra" - the view is deliberately
+    // wide so it reads as the city rather than a precise, wrong pin. Replace
+    // with a "Share -> Embed a map" URL from the agency.
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25000!2d-6.7985!3d34.0531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sma!4v1758000000000!5m2!1sfr!2sma",
   },
   // The flyers show YouTube, Snapchat, Instagram and Facebook icons but no
   // handles — left empty until the agency sends the links.
