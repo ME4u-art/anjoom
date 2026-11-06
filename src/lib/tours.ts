@@ -4,6 +4,8 @@ import hajj from "@/assets/hajj.jpg";
 import cruise from "@/assets/cruise.jpg";
 import thailand from "@/assets/tour-thailand.jpg";
 import prague from "@/assets/tour-prague.jpg";
+import istanbul from "@/assets/tour-istanbul.webp";
+import dubai from "@/assets/tour-dubai.webp";
 import { pick, pickList } from "@/i18n";
 import { DEFAULT_LOCALE, isLocale } from "@/i18n/types";
 import type { Locale, Localized, LocalizedList } from "@/i18n/types";
@@ -99,8 +101,7 @@ export const voyagesOrganises: Tour[] = [
     dates: monoT("Départs chaque samedi"),
     price: "8 900",
     priceNote: monoT("Par personne en chambre double, vol et petit déjeuner inclus."),
-    // Stand-in image — à remplacer par une vraie photo d'Istanbul.
-    image: hero,
+    image: istanbul,
     region: monoT("Turquie"),
     airline: "Turkish Airlines",
     overview: monoT("Six jours pour traverser Istanbul d'une rive à l'autre : les mosquées et les palais de la vieille ville le matin, les quartiers vivants de la rive européenne l'après-midi, et une croisière sur le Bosphore au coucher du soleil."),
@@ -198,8 +199,7 @@ export const voyagesOrganises: Tour[] = [
     dates: monoT("Départs toute l'année"),
     price: "12 500",
     priceNote: monoT("Par personne en chambre double, vol et petit déjeuner inclus."),
-    // Stand-in image — à remplacer par une vraie photo de Dubaï.
-    image: hero,
+    image: dubai,
     region: monoT("Émirats arabes unis"),
     airline: "Emirates",
     overview: monoT("Quatre nuits pour voir les deux visages de Dubaï : la ville de verre avec le Burj Khalifa et la marina, et le désert avec un safari en 4x4 et un dîner sous tente."),
