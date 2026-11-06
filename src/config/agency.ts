@@ -185,9 +185,8 @@ export const agency: AgencyConfig = {
   contact: {
     phones: ["05 37 84 02 12", "05 37 82 08 09", "06 61 34 15 95", "06 61 34 15 94"],
     whatsapp: "+212 661 34 15 95",
-    // TODO: invented — no flyer showed an email. Enquiries still reach the
-    // agency on WhatsApp, but nothing is emailed until this is real.
-    email: "contact@anjoomvoyage.ma",
+    // Own domain, bought 4 Nov 2026. The mailbox must exist in its cPanel.
+    email: "contact@anjoomvoyage.com",
     addresses: {
       fr: "N°7, Immeuble 7, Hafrat El Kaouss, route de Kénitra, Salé",
       ar: "رقم 7، العمارة 7، حفرة القواس، طريق القنيطرة، سلا",
@@ -230,7 +229,7 @@ export const agency: AgencyConfig = {
   seo: {
     // The live Vercel link. Switch it the day the agency's own domain points
     // at Vercel, or canonical and hreflang will point at the wrong host.
-    url: "https://anjoom.vercel.app",
+    url: "https://www.anjoomvoyage.com",
     title: "Anjoom Voyage — Omra au départ du Maroc",
     description:
       "Programmes d'Omra encadrés au départ du Maroc : vol, hôtels près des Harams, transferts, visa et accompagnement religieux. Agence Anjoom Voyage à Salé.",
