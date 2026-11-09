@@ -98,7 +98,8 @@ export const recordBooking = createServerFn({ method: "POST" })
     // Always log — this is the record for clients with no email account.
     console.log(`[booking:${data.kind}] ${JSON.stringify(data.fields)}`);
 
-    const key = env("RESEND_API_KEY");
+    // Anjoom's dashboard secret is named RESEND_API_KPY (kept as-is on purpose).
+    const key = env("RESEND_API_KEY") || env("RESEND_API_KPY");
     const to = env("BOOKING_EMAIL_TO") || agency.contact.email;
     if (!key || !to) return { recorded: true, emailed: false };
 

@@ -155,7 +155,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <CartButton light={light} />
+            {isEnabled("cart") && <CartButton light={light} />}
             <LanguageSwitcher />
             <HoverScale className="hidden sm:block">
               <Link to="/$lang/contact" params={{ lang }} className="btn-primary inline-flex">

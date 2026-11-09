@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { isEnabled, notFoundHead } from "@/config/agency";
 import { useState } from "react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -31,8 +32,12 @@ import {
  * programme pages that sell.
  */
 export const Route = createFileRoute("/$lang/panier")({
+  beforeLoad: () => {
+    if (!isEnabled("cart")) throw notFound();
+  },
   head: ({ params }) => {
     const t = tFor(params.lang);
+    if (!isEnabled("cart")) return notFoundHead(t("error.notFoundTitle"));
     return {
       meta: [
         { title: t("meta.cart.title") },
@@ -106,9 +111,7 @@ function CartPage() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h2 className="font-display text-lg font-semibold">
-                      {pick(lang, l.title)}
-                    </h2>
+                    <h2 className="font-display text-lg font-semibold">{pick(lang, l.title)}</h2>
                     <dl className="mt-2 space-y-1 text-sm text-muted-foreground">
                       {l.details.map((d) => (
                         <div key={d.label} className="flex gap-2">

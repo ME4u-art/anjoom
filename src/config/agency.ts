@@ -27,6 +27,7 @@ export type KnownFeature =
   | "greatDeals" // Bons plans — tours flagged `deal: true`
   | "visa" // Visa & formalités info page
   | "mice" // MICE / corporate page
+  | "cart" // basket (header bag + "add to cart") — only for clients who take payment online
   | "gallery"; // photo gallery page
 
 /** Extensible: known keys are typed, future keys are tolerated. */

@@ -422,73 +422,75 @@ function BookingForm({
         </label>
         {/* Add to cart keeps the visitor on the page; submit sends one
             programme straight through. Both read the same fields. */}
-        <button
-          type="button"
-          className="w-full rounded-full border border-primary px-4 py-3 text-sm font-semibold text-primary transition hover:bg-primary/5"
-          onClick={(e) => {
-            const form = e.currentTarget.form;
-            if (!form) return;
-            // Only the fields that describe the trip. form.reportValidity()
-            // would also demand fullName and phone, which belong at checkout
-            // on the cart page, not to putting a programme in the basket.
-            const trip = ["program", "date", "hotel", "room", "people"];
-            for (const name of trip) {
-              const el = form.elements.namedItem(name);
-              if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement) {
-                if (!el.checkValidity()) {
-                  el.reportValidity();
-                  return;
+        {isEnabled("cart") && (
+          <button
+            type="button"
+            className="w-full rounded-full border border-primary px-4 py-3 text-sm font-semibold text-primary transition hover:bg-primary/5"
+            onClick={(e) => {
+              const form = e.currentTarget.form;
+              if (!form) return;
+              // Only the fields that describe the trip. form.reportValidity()
+              // would also demand fullName and phone, which belong at checkout
+              // on the cart page, not to putting a programme in the basket.
+              const trip = ["program", "date", "hotel", "room", "people"];
+              for (const name of trip) {
+                const el = form.elements.namedItem(name);
+                if (el instanceof HTMLInputElement || el instanceof HTMLSelectElement) {
+                  if (!el.checkValidity()) {
+                    el.reportValidity();
+                    return;
+                  }
                 }
               }
-            }
-            const f = new FormData(form);
-            const value = (name: string) => String(f.get(name) ?? "");
-            const hotel = value("hotel");
-            const room = value("room");
-            const column = roomColumn(room);
-            // Labels are keys, and the room is a key too — those are our
-            // words. The hotel name and the departure date are the agency's
-            // own data and are stored as written.
-            // The hotel is the agency's own data, but they wrote it in both
-            // languages — so keep it Localized, found by its position in the
-            // same list the <select> was built from.
-            const atHotel = hotels.indexOf(hotel);
-            const hotelLocalized = rawHotels && atHotel >= 0 ? rawHotels[atHotel] : undefined;
-            const details: CartDetail[] = [
-              hotelLocalized
-                ? { label: "hajj.hotel", value: hotel, localized: hotelLocalized }
-                : { label: "hajj.hotel", value: hotel },
-              column
-                ? { label: "book.room", value: ROOM_KEY[column], translate: true }
-                : { label: "book.room", value: room },
-            ];
-            const chosen = value("program");
-            if (chosen) details.push({ label: "book.program", value: chosen });
-            const date = value("date");
-            if (date) {
-              // Store the departure Localized when we can still identify
-              // which entry it is, so an Arabic reader does not get the
-              // French line — and neither does the agency's WhatsApp.
-              const at = dates.indexOf(date);
-              details.push(
-                rawDates && at >= 0
-                  ? { label: "book.date", value: date, localized: localizedAt(rawDates, at) }
-                  : { label: "book.date", value: date },
-              );
-            }
-            addLine({
-              slug,
-              kind: "omra",
-              title: rawTitle,
-              details,
-              people: Number(value("people")) || 1,
-              unitPrice: column ? priceFor(hotel, column) : "",
-            });
-            setAdded(true);
-          }}
-        >
-          {added ? t("cart.added") : t("cart.add")}
-        </button>
+              const f = new FormData(form);
+              const value = (name: string) => String(f.get(name) ?? "");
+              const hotel = value("hotel");
+              const room = value("room");
+              const column = roomColumn(room);
+              // Labels are keys, and the room is a key too — those are our
+              // words. The hotel name and the departure date are the agency's
+              // own data and are stored as written.
+              // The hotel is the agency's own data, but they wrote it in both
+              // languages — so keep it Localized, found by its position in the
+              // same list the <select> was built from.
+              const atHotel = hotels.indexOf(hotel);
+              const hotelLocalized = rawHotels && atHotel >= 0 ? rawHotels[atHotel] : undefined;
+              const details: CartDetail[] = [
+                hotelLocalized
+                  ? { label: "hajj.hotel", value: hotel, localized: hotelLocalized }
+                  : { label: "hajj.hotel", value: hotel },
+                column
+                  ? { label: "book.room", value: ROOM_KEY[column], translate: true }
+                  : { label: "book.room", value: room },
+              ];
+              const chosen = value("program");
+              if (chosen) details.push({ label: "book.program", value: chosen });
+              const date = value("date");
+              if (date) {
+                // Store the departure Localized when we can still identify
+                // which entry it is, so an Arabic reader does not get the
+                // French line — and neither does the agency's WhatsApp.
+                const at = dates.indexOf(date);
+                details.push(
+                  rawDates && at >= 0
+                    ? { label: "book.date", value: date, localized: localizedAt(rawDates, at) }
+                    : { label: "book.date", value: date },
+                );
+              }
+              addLine({
+                slug,
+                kind: "omra",
+                title: rawTitle,
+                details,
+                people: Number(value("people")) || 1,
+                unitPrice: column ? priceFor(hotel, column) : "",
+              });
+              setAdded(true);
+            }}
+          >
+            {added ? t("cart.added") : t("cart.add")}
+          </button>
+        )}
         <button type="submit" className="btn-primary w-full hover:-translate-y-0.5">
           {t("book.submit")}
         </button>
@@ -711,9 +713,9 @@ function ProgramDetail() {
                     slug={program.slug}
                     hotels={program.tables.flatMap((t) => t.rows.map((r) => r.label))}
                     priceFor={(hotel, room) =>
-                      program.tables
-                        .flatMap((tb) => tb.rows)
-                        .find((r) => r.label === hotel)?.[room] ?? ""
+                      program.tables.flatMap((tb) => tb.rows).find((r) => r.label === hotel)?.[
+                        room
+                      ] ?? ""
                     }
                     dates={program.dates}
                     programs={program.tables.map((t) => t.name).filter(Boolean)}
